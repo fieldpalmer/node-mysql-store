@@ -1,10 +1,7 @@
 //retrieve dependencies
-
 const mysql = require('mysql');
 const inquirer = require('inquirer');
-
 //establish mysql database connection
-
 const connection = mysql.createConnection({
    host: 'localhost',
    port: 3306,
@@ -12,9 +9,7 @@ const connection = mysql.createConnection({
    password: '',
    database: 'bamazon'
 })
-
 // app functions
-
 const openStore = () => {
    // display all available items in mySQL database
    connection.query('SELECT * FROM products', function(err, res) {
@@ -104,8 +99,7 @@ const promptPurchase = () => {
                      promptPurchase(); 
                   } 
                })
-            }
-            
+            }           
             else { //if there's not enough in stock
                console.log("Sorry! We don't have enough of that item in stock. Please request a smaller amount.");
                promptPurchase();
@@ -113,109 +107,5 @@ const promptPurchase = () => {
       })
    })
 }
-
 // launch program 
-
 openStore();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const mysql = require("mysql");
-// const inquirer = require("inquirer");
-
-// const connection = mysql.createConnection({
-//    host: "localhost",
-//    port: 3306,
-//    user: "root",
-//    // password: "",
-//    database: "bamazon"
-// });
-
-// connection.connect(function(err) {
-//    if (err) throw err;
-//    openStore();
-// })
-
-// const openStore = () => {
-//    connection.query("SELECT * FROM products", function(err, results) {
-//       console.log(results);
-//       inquirer.prompt([
-//          {
-//             name: "item_id",
-//             type: "input",
-//             message: "What is the ID of the product you would like to buy?",
-//             // choices: function() {
-//             //    let productsArray = [];
-//             //    for (var i = 0 ; i < results.length ; i++) {
-//             //       productsArray.push([results[i].item_id, results[i].product_name, results[i].price]);
-//             //    }
-//             //    return productsArray;
-//             // },
-//          },
-//          {
-//             name: "quantity",
-//             type: "input",
-//             message: "How many would you like to buy?"
-//          }
-//       ])
-//       .then(function(answer) {
-//          var productPick;
-//          for ( var i = 0 ; i < results.length ; i++ ) {
-//             if (answer.item_id === results[i].item_id) {
-//                productPick = results[i];
-//             }
-//          }
-//          if (RowDataPacket.parseInt(stock_quantity) >= parseInt(answer.quantity)) {
-//             connection.query(
-//             // fill order and update quantity
-//                "UPDATE products SET ? WHERE ?",
-//                [
-//                  {
-//                    stock_quantity: (RowDataPacket.stock_quantity - answer.quantity)
-//                  },
-//                  {
-//                    item_id: RowDataPacket.item_id
-//                  }
-//                ],
-//                function(error) {
-//                  if (error) throw err;
-//                  console.log("Order placed!");
-//                  openStore();
-//                }
-//              );
-//          }
-//          else {
-//             console.log("Insuffucient quantity. Sorry, but we cannot fulfill your order.")
-//             openStore();
-//          }
-//       })
-//    })
-// } 
