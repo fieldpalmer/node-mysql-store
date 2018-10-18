@@ -87,14 +87,14 @@ const promptPurchase = () => {
                            }
                         ]).then(function(check){
                            if (check.shopConfirm){
-                              promptPurchase();
+                              openStore();
                            } else {
                               connection.end();
                            }
                         })
                      })
                   } 
-                  else {
+                  else { //they messed up their order
                      console.log("Maybe you want to edit your order?");
                      promptPurchase(); 
                   } 
