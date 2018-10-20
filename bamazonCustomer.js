@@ -39,14 +39,30 @@ const promptPurchase = () => {
    // get info from user on what they want
    inquirer.prompt([
       {
-         name: 'item_id',
-         type: 'input',
-         message: 'What is the ID of the product you would like?'
+            name: 'item_id',
+            type: 'input',
+            message: 'What is the ID of the product you would like?',
+            validate: (value) => {
+                  if (!isNaN(value) && value > 0) {
+                  return true;
+                  } else {
+                  console.log("Uh oh, we're noticing some suspicious activity");
+                  return false;
+                  }
+            }  
       },
       {
-         name: 'amount',
-         type: 'input',
-         message: 'How many do you need?'
+            name: 'amount',
+            type: 'input',
+            message: 'How many do you need?',
+            validate: (value) => {
+                  if (!isNaN(value) && value > 0) {
+                  return true;
+                  } else {
+                  console.log("Uh oh, we're noticing some suspicious activity");
+                  return false;
+                  }
+            }
       }
    ]).then(function(answer) {
       //save user inputs in variables

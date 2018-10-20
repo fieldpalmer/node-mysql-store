@@ -108,11 +108,27 @@ const increaseInv = () => {
             type: 'input',
             name: 'prodID',
             message: 'What is the ID of the product you would like to edit?', 
+            validate: (value) => {
+                if (!isNaN(value) && value > 0) {
+                    return true;
+                } else {
+                    console.log("Uh oh, we're noticing some suspicious activity");
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'invQuant',
-            message: 'How many units would you like to add?'
+            message: 'How many units would you like to add?',
+            validate: (value) => {
+                if (!isNaN(value) && value > 0) {
+                    return true;
+                } else {
+                    console.log("Uh oh, we're noticing some suspicious activity");
+                    return false;
+                }
+            }
         }
     ]).then( input => {
         let productID = input.prodID;
@@ -168,6 +184,13 @@ const addProduct = () => {
             mgmtView();
         })
     })
+}
+
+const validateNums = (input) => {
+    if (input == NaN) {
+        console.log("Uh oh, you've entered something suspicious");
+        mgmtView();
+    }
 }
 
 mgmtView();
